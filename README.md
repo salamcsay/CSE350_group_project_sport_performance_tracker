@@ -73,4 +73,5 @@ To get a local copy up and running, follow these simple steps.
 
 1. Clone the repository:
    ```bash
-   git clone 
+   git clone https://github.com/yourusername/CSE350_group_project_sport_performance_tracker.git
+   cd CSE350_group_project_sport_performance_tracker
