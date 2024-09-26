@@ -1,6 +1,7 @@
 # Group-18_CSE350-50_group_project_sport_performance_tracker
 
 Sports Performance Tracker Project
+
 Team Members: Julian Valleroy, Kiefer Court, Saeed Albakri, Abdou Ceesay, Nina Pauig
 
 A web application that allows users to track, analyze, and compare player and team performance in different sports. The application provides comprehensive analytics, visualizations, and allows users to follow teams and players for updates.
