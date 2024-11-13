@@ -1,0 +1,26 @@
+from rest_framework import serializers
+from .models import Club, Player, PlayerStats, ClubStats
+
+class PlayerStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlayerStats
+        fields = '__all__'
+
+class ClubStatsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClubStats
+        fields = '__all__'
+
+class PlayerSerializer(serializers.ModelSerializer):
+    stats = PlayerStatsSerializer(read_only=True)
+    
+    class Meta:
+        model = Player
+        fields = ['id', 'name', 'club', 'position', 'stats']
+
+class ClubSerializer(serializers.ModelSerializer):
+    stats = ClubStatsSerializer(read_only=True)
+    
+    class Meta:
+        model = Club
+        fields = ['id', 'name', 'location', 'stats']
