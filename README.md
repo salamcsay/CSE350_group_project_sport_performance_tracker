@@ -86,7 +86,7 @@ To get a local copy up and running, follow these simple steps.
 - python3 -m venv venv
 - source venv/bin/activate
 
-# Install dependencies
+## Install dependencies
 - cd backend
 - pip install django djangorestframework - django-cors-headers django-filter
 
