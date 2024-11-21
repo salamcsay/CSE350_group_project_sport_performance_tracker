@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Example const BASE_URL = 'https://api.football-data.org/v2';
 const BASE_URL = 'http://localhost:8000'; 
 
 export const fetchPlayers = async (filters = {}) => {

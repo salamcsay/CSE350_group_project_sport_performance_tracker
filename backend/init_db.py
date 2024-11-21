@@ -1,3 +1,4 @@
+# Description: This script initializes the database with sample data.
 import os
 import django
 import logging

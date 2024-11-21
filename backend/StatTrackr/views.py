@@ -1,4 +1,3 @@
-# views.py
 from rest_framework import viewsets, filters
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
@@ -75,6 +74,7 @@ def dashboard(request):
         }
     })
 
+# Define a viewset for the Player model
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all().select_related('club', 'stats')
     serializer_class = PlayerSerializer
@@ -116,6 +116,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(position=position)
         return queryset
 
+# Define a viewset for the Club model
 class ClubViewSet(viewsets.ModelViewSet):
     queryset = Club.objects.all().select_related('stats')
     serializer_class = ClubSerializer

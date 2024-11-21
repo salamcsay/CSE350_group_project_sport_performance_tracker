@@ -134,6 +134,6 @@ class ClubStatsAdmin(admin.ModelAdmin):
     )
 
     def get_readonly_fields(self, request, obj=None):
-        if obj:  # Editing an existing object
+        if obj:  
             return ('club',) + self.readonly_fields
         return self.readonly_fields

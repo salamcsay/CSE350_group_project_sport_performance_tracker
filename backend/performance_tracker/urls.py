@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('StatTrackr.urls')),  # Include all StatTrackr URLs under /api/
     path('api-auth/', include('rest_framework.urls')),
-    path('', RedirectView.as_view(url='/api/dashboard/')),  # Redirect root to dashboard
+    path('', RedirectView.as_view(url='/api/dashboard/')),  # Redirect root to the dashboard
 ]
 
 if settings.DEBUG:

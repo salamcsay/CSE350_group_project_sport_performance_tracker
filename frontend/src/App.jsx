@@ -6,6 +6,7 @@ import ClubStats from './components/ClubStats';
 import SearchFilter from './components/SearchFilter';
 import Dashboard from './components/Dashboard';
 
+
 const App = () => (
   <Router>
     <Navbar />

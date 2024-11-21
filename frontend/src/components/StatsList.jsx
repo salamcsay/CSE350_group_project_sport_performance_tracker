@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchPlayers } from '../services/api';
 
+// Component that fetches and displays player stats
 const StatsList = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);

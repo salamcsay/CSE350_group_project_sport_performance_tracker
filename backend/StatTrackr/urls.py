@@ -11,6 +11,7 @@ router.register(r'clubs', views.ClubViewSet, basename='club')
 
 urlpatterns = [
     # Include the router URLs
+    
     path('', include(router.urls)),
     
     # Custom endpoints

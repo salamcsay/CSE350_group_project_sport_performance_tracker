@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchClubs } from '../services/api';
 
+// Component that fetches and displays club stats
 const ClubStats = () => {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDashboardData } from '../services/api';
 
+// Component that fetches and displays dashboard stats
 const DashboardStats = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);

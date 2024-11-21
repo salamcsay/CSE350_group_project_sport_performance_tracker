@@ -25,6 +25,7 @@ class PlayerFilter(filters.FilterSet):
         model = Player
         fields = ['name', 'club', 'position']
 
+# Define a filter for the Club model
 class ClubFilter(filters.FilterSet):
     name = filters.CharFilter(lookup_expr='icontains')
     location = filters.CharFilter(lookup_expr='icontains')

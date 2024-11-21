@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Component that displays the navigation bar
 const Navbar = () => {
   return (
     <nav>

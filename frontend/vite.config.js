@@ -1,3 +1,4 @@
+// Proxy to backend server
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 

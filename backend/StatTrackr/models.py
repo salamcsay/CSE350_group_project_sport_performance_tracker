@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
 
+# Create your models here.
 class Club(models.Model):
     name = models.CharField(max_length=100, unique=True)
     location = models.CharField(max_length=100)

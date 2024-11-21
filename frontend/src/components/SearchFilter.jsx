@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { search } from '../services/api';
 
+// Component that fetches and displays search results
 const SearchFilter = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState({ players: [], clubs: [] });

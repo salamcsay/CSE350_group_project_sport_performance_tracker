@@ -65,6 +65,7 @@ print_status "🚀 Starting React frontend server..."
 cd "$ROOT_DIR/$FRONTEND_DIR" && npm run dev &
 VITE_PID=$!
 
+
 # Handle script termination
 cleanup() {
     print_status "🛑 Shutting down servers..."
@@ -77,7 +78,7 @@ trap cleanup INT TERM
 # Print status
 print_status "\n✨ Development servers started:"
 print_status "Backend: http://localhost:8000"
-print_status "Frontend: http://localhost:5173 (default Vite port)\n"
+print_status "Frontend: http://localhost:5173 (default Vite )\n"
 
 # Wait for both processes
 wait

@@ -1,3 +1,4 @@
+// Contents: ESLint configuration for frontend JavaScript and JSX files
 import js from '@eslint/js'
 import globals from 'globals'
 import react from 'eslint-plugin-react'

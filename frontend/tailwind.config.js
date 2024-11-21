@@ -1,3 +1,5 @@
+// Purpose: Tailwind CSS configuration file.
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

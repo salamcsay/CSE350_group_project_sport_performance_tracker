@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Club, Player, PlayerStats, ClubStats
 
+# Define serializers for the PlayerStats and ClubStats models
 class PlayerStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlayerStats
