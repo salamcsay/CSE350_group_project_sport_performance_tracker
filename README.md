@@ -80,57 +80,56 @@ To get a local copy up and running, follow these simple steps.
 
    cd CSE350_group_project_sport_performance_tracker
 
-### Environment Setup
+# Environment Setup
 
-# Create & activate virtual environment
-python3 -m venv venv
-source venv/bin/activate
+## Create & activate virtual environment
+- python3 -m venv venv
+- source venv/bin/activate
 
-# Install dependencies
-cd backend
-pip install django djangorestframework django-cors-headers django-filter
+## Install dependencies
+- cd backend
+- pip install django djangorestframework - django-cors-headers django-filter
 
-### Database Setup
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
+## Database Setup
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py createsuperuser
 
-### Frontend Setup
-cd ../frontend
-npm install
+## Frontend Setup
+- cd ../frontend
+- npm install
 
-### Run Application (Backend):
-cd backend
-source ../venv/bin/activate
-python manage.py runserver
+## Run Application (Backend):
+- cd backend
+- source ../venv/bin/activate
+- python manage.py runserver
 
-### Run Application (Frontend):
-cd frontend
-npm run dev
+## Run Application (Frontend):
+- cd frontend
+- npm run dev
 
-### Access:
+## Access:
+- Backend: http://localhost:8000/api/
+- Frontend: http://localhost:5173
+- Admin: http://localhost:8000/admin/
 
-Backend: http://localhost:8000/api/
-Frontend: http://localhost:5173
-Admin: http://localhost:8000/admin/
+## Common Issues:
 
-### Common Issues:
+- Python not found: Install Python 3
+- Module not found: Run pip install -r requirements.txt
+- Port in use: Change port using python manage.py runserver 8001
 
-Python not found: Install Python 3
-Module not found: Run pip install -r requirements.txt
-Port in use: Change port using python manage.py runserver 8001
+# Common Management Commands:
+## Database
+- python manage.py makemigrations   # Create new migrations
+- python manage.py migrate          # Apply migrations
+- python manage.py flush            # Clear database
 
-### Common Management Commands:
-# Database
-python manage.py makemigrations   # Create new migrations
-python manage.py migrate          # Apply migrations
-python manage.py flush            # Clear database
+## Create admin user
+- python manage.py createsuperuser
 
-# Create admin user
-python manage.py createsuperuser
+## Shell
+- python manage.py shell
 
-# Shell
-python manage.py shell
-
-# Static files
-python manage.py collectstatic      
+## Static files
+- python manage.py collectstatic      
