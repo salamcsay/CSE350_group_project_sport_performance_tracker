@@ -5,10 +5,6 @@ setlocal enabledelayedexpansion
 set BACKEND_DIR=backend
 set FRONTEND_DIR=frontend
 
-:: Colors for output
-:: Windows cmd does not natively support colors in echo.
-:: Use external tools or PowerShell if colors are critical.
-
 :: Helper function replacements
 echo_status() (
     echo [INFO] %*
