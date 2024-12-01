@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDashboardData } from '../services/api';
+import './DashboardStats.css';
 
 // Component that fetches and displays dashboard stats
 const DashboardStats = () => {
