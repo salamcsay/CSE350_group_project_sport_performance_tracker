@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { search } from '../services/api';
+import '../styles/SearchFilter.css';
 
 // Component that fetches and displays search results
 const SearchFilter = () => {
