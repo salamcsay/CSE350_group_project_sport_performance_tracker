@@ -2,7 +2,7 @@
 
 Sports Performance Tracker Project
 
-Team Members: Julian Valleroy, Kiefer Court, Saeed Albakri, Abdou Ceesay, Nina Pauig
+Team Members: Julian Valleroy, Kiefer Court, Saeed Albakri, Abdou Ceesay, Nina Pauig, 1234
 
 A web application that allows users to track, analyze, and compare player and team performance in different sports. The application provides comprehensive analytics, visualizations, and allows users to follow teams and players for updates.
 
@@ -85,6 +85,11 @@ To get a local copy up and running, follow these simple steps.
 ## Create & activate virtual environment
 - python3 -m venv venv
 - source venv/bin/activate
+
+## For Windows
+- python -m venv venv
+- cd venv then cd Scripts
+- run ./activate
 
 ## Install dependencies
 - cd backend

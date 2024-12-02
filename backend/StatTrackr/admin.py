@@ -15,18 +15,19 @@ class ClubAdmin(admin.ModelAdmin):
     total_players.short_description = 'Squad Size'
 
     def win_percentage_display(self, obj):
-        percentage = obj.get_win_percentage()
+        percentage = obj.get_win_percentage()  # This is already a float
+        formatted_percentage = f"{percentage:.1f}%"  # Format as a string
+        color = "green" if percentage > 50 else "red"
         return format_html(
-            '<span style="color: {};">{:.1f}%</span>',
-            'green' if percentage > 50 else 'red',
-            percentage
+            '<span style="color: {};">{}</span>',
+            color,
+            formatted_percentage
         )
     win_percentage_display.short_description = 'Win Rate'
 
     def goals_per_game_display(self, obj):
         return f'{obj.get_goals_per_game():.2f}'
     goals_per_game_display.short_description = 'Goals/Game'
-
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ('name', 'club', 'position', 'goals_display', 'assists_display', 'appearances_display')
