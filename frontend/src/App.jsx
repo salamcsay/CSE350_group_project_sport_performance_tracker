@@ -1,22 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import PlayerStats from './components/PlayerStats';
-import ClubStats from './components/ClubStats';
-import SearchFilter from './components/SearchFilter';
-import Dashboard from './components/Dashboard';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AppLayout from './components/AppLayout';
+import DashboardView from './views/DashboardView';
+import PlayersView from './views/PlayersView';
+import ClubsView from './views/ClubsView';
 
-
-const App = () => (
-  <Router>
-    <Navbar />
-    <Routes>
-      <Route path="/players" element={<PlayerStats />} />
-      <Route path="/clubs" element={<ClubStats />} />
-      <Route path="/search" element={<SearchFilter />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-  </Router>
-);
+const App = () => {
+  return (
+    <AppLayout>
+      <Routes>
+        <Route path="/" element={<DashboardView />} />
+        <Route path="/players" element={<PlayersView />} />
+        <Route path="/clubs" element={<ClubsView />} />
+      </Routes>
+    </AppLayout> 
+  );
+};
 
 export default App;

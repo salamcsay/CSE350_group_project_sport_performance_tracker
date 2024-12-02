@@ -54,26 +54,37 @@ def dashboard(request):
     top_assisters = PlayerStats.objects.select_related('player').order_by('-assists')[:10]
     top_passers = PlayerStats.objects.select_related('player').order_by('-passes')[:10]
     top_shooters = PlayerStats.objects.select_related('player').order_by('-shots')[:10]
+    most_clean_sheets = PlayerStats.objects.select_related('player').order_by('-clean_sheets')[:10]
     
     # Top clubs in different categories
     top_scoring_clubs = ClubStats.objects.select_related('club').order_by('-goals')[:10]
     top_winning_clubs = ClubStats.objects.select_related('club').order_by('-wins')[:10]
     most_tackles_clubs = ClubStats.objects.select_related('club').order_by('-tackles')[:10]
+    most_wins = top_winning_clubs
     
     return Response({
         'player_stats': {
-            'top_scorers': PlayerStatsSerializer(top_scorers, many=True).data,
-            'top_assisters': PlayerStatsSerializer(top_assisters, many=True).data,
-            'top_passers': PlayerStatsSerializer(top_passers, many=True).data,
-            'top_shooters': PlayerStatsSerializer(top_shooters, many=True).data,
+            'top_scorers': [
+                {'name': scorer.player.name, 'club': scorer.player.club.name, 'goals': scorer.goals}
+                for scorer in top_scorers
+            ],
+            'top_assisters': [
+                {'name': assister.player.name, 'club': assister.player.club.name, 'assists': assister.assists}
+                for assister in top_assisters
+            ],
+            'most_clean_sheets': [
+                {'name': keeper.player.name, 'club': keeper.player.club.name, 'clean_sheets': keeper.clean_sheets}
+                for keeper in most_clean_sheets
+            ],
         },
         'club_stats': {
-            'top_scoring_clubs': ClubStatsSerializer(top_scoring_clubs, many=True).data,
-            'top_winning_clubs': ClubStatsSerializer(top_winning_clubs, many=True).data,
-            'most_tackles_clubs': ClubStatsSerializer(most_tackles_clubs, many=True).data,
+            'most_wins': [
+                {'name': club_stat.club.name, 'location': club_stat.club.location, 'wins': club_stat.wins}
+                for club_stat in most_wins
+            ]
         }
     })
-
+    
 # Define a viewset for the Player model
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all().select_related('club', 'stats')
