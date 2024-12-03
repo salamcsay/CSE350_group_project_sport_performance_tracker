@@ -4,6 +4,8 @@ import AppLayout from './components/AppLayout';
 import DashboardView from './views/DashboardView';
 import PlayersView from './views/PlayersView';
 import ClubsView from './views/ClubsView';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 const App = () => {
   return (
@@ -12,6 +14,8 @@ const App = () => {
         <Route path="/" element={<DashboardView />} />
         <Route path="/players" element={<PlayersView />} />
         <Route path="/clubs" element={<ClubsView />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </AppLayout> 
   );
