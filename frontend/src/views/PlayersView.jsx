@@ -1,10 +1,11 @@
+// src/views/PlayersView.jsx
 import React, { useState, useEffect } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Loader2 } from "lucide-react"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Loader2 } from "lucide-react";
 import { api } from '@/services/api';
 
 const PlayersView = () => {
@@ -24,7 +25,7 @@ const PlayersView = () => {
           ...(position !== 'all' && { position }),
           ordering: `${sortDirection === 'desc' ? '-' : ''}${sortColumn}`
         });
-        
+
         const response = await api.get(`/players/?${params}`);
         setPlayers(response.data.results);
       } catch (err) {
@@ -38,8 +39,19 @@ const PlayersView = () => {
   }, [search, position, sortColumn, sortDirection]);
 
   const handleSort = (column) => {
-    setSortDirection(sortColumn === column && sortDirection === 'asc' ? 'desc' : 'asc');
-    setSortColumn(column);
+    if (sortColumn === column) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  };
+
+  const renderSortArrow = (column) => {
+    if (sortColumn === column) {
+      return sortDirection === 'asc' ? '↑' : '↓';
+    }
+    return null;
   };
 
   if (loading) {
@@ -90,20 +102,20 @@ const PlayersView = () => {
             <TableHeader>
               <TableRow>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('name')}>
-                  Name
+                  Name 
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('club')}>
-                  Club
+                  Club 
                 </TableHead>
                 <TableHead>Position</TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('stats__goals')}>
-                  Goals
+                  Goals {renderSortArrow('stats__goals')}
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('stats__assists')}>
-                  Assists
+                  Assists {renderSortArrow('stats__assists')}
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('stats__appearances')}>
-                  Appearances
+                  Appearances {renderSortArrow('stats__appearances')}
                 </TableHead>
               </TableRow>
             </TableHeader>
