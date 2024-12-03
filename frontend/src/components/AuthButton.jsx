@@ -6,10 +6,19 @@ import { AuthContext } from '@/context/AuthContext';
 
 const AuthButton = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   if (isAuthenticated) {
-    return null; // Don't render anything if the user is logged in
+    return (
+      <Button onClick={handleLogout} variant="destructive">
+        Logout
+      </Button>
+    );
   }
 
   return (
