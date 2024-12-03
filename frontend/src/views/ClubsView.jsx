@@ -11,23 +11,26 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2 } from "lucide-react"
+import { api } from '@/services/api';
 
 const ClubsView = () => {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
-  const [sortColumn, setSortColumn] = useState('name');
-  const [sortDirection, setSortDirection] = useState('asc');
+  const [sortColumn, setSortColumn] = useState('name'); // Initial sort column
+  const [sortDirection, setSortDirection] = useState('asc'); // Initial sort direction
 
   useEffect(() => {
     const fetchClubs = async () => {
       try {
-        const url = `/api/clubs/?search=${search}&ordering=${sortDirection === 'desc' ? '-' : ''}${sortColumn}`;
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Failed to fetch clubs');
-        const data = await response.json();
-        setClubs(data.results);
+        const params = new URLSearchParams({
+          search: search || '',
+          ordering: `${sortDirection === 'desc' ? '-' : ''}${sortColumn}`
+        });
+
+        const response = await api.get(`/clubs/?${params}`);
+        setClubs(response.data.results);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -39,8 +42,19 @@ const ClubsView = () => {
   }, [search, sortColumn, sortDirection]);
 
   const handleSort = (column) => {
-    setSortDirection(sortColumn === column && sortDirection === 'asc' ? 'desc' : 'asc');
-    setSortColumn(column);
+    if (sortColumn === column) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortColumn(column);
+      setSortDirection('asc');
+    }
+  };
+
+  const renderSortArrow = (column) => {
+    if (sortColumn === column) {
+      return sortDirection === 'asc' ? '↑' : '↓';
+    }
+    return null;
   };
 
   if (loading) {
@@ -79,22 +93,22 @@ const ClubsView = () => {
             <TableHeader>
               <TableRow>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('name')}>
-                  Name
+                  Name 
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('location')}>
-                  Location
+                  Location 
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('stats__wins')}>
-                  Wins
+                  Wins {renderSortArrow('stats__wins')}
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('stats__goals')}>
-                  Goals
+                  Goals {renderSortArrow('stats__goals')}
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('win_percentage')}>
-                  Win Rate
+                  Win Rate 
                 </TableHead>
                 <TableHead className="cursor-pointer" onClick={() => handleSort('goals_per_game')}>
-                  Goals/Game
+                  Goals/Game 
                 </TableHead>
               </TableRow>
             </TableHeader>
