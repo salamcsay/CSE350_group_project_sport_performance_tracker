@@ -15,7 +15,6 @@ const DashboardPage = () => {
     const fetchUser = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
-        setError('User not logged in');
         return;
       }
       try {
