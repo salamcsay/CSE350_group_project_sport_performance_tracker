@@ -15,6 +15,7 @@ const DashboardPage = () => {
     const fetchUser = async () => {
       const token = localStorage.getItem('token');
       if (!token) {
+        setError('User not logged in');
         return;
       }
       try {
@@ -29,6 +30,7 @@ const DashboardPage = () => {
           throw new Error(data.detail || 'Failed to fetch user');
         }
         setUser(data);
+        setError(null); // Reset error state after successful fetch
       } catch (err) {
         setError(err.message);
       }
@@ -48,7 +50,6 @@ const DashboardPage = () => {
         <div className="w-full">
           <div className="flex justify-between items-center p-4">
             <p>Welcome, {user.username}!</p>
-            <Button onClick={handleLogout}>Logout</Button>
           </div>
           <DashboardView />
         </div>
