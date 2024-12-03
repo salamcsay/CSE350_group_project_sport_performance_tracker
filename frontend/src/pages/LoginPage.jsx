@@ -1,27 +1,45 @@
 // src/pages/LoginPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { getCsrfToken } from '@/utils/csrf';
+import { AuthContext } from '@/context/AuthContext';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [csrfToken, setCsrfToken] = useState('');
+  const { login } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      const token = await getCsrfToken();
+      setCsrfToken(token);
+    };
+    fetchCsrfToken();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch('/api/auth/login/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include',
       });
-      if (!response.ok) throw new Error('Login failed');
       const data = await response.json();
-      localStorage.setItem('token', data.token);
+      if (!response.ok) {
+        throw new Error(data.non_field_errors || 'Login failed');
+      }
+      login(data.key);
       navigate('/');
     } catch (err) {
       setError(err.message);
