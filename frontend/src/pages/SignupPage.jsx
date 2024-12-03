@@ -1,10 +1,11 @@
 // src/pages/SignupPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { getCsrfToken } from '@/utils/csrf';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,16 @@ const SignupPage = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [csrfToken, setCsrfToken] = useState('');
+
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      const token = await getCsrfToken();
+      console.log('CSRF token:', token);  // Add logging
+      setCsrfToken(token);
+    };
+    fetchCsrfToken();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,14 +34,25 @@ const SignupPage = () => {
       return;
     }
     try {
+      console.log('Submitting form data:', formData);  // Add logging
       const response = await fetch('/api/auth/registration/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include',
       });
-      if (!response.ok) throw new Error('Registration failed');
+      console.log('Response status:', response.status);  // Add logging
+      const data = await response.json();
+      console.log('Response data:', data);  // Add logging
+      if (!response.ok) {
+        throw new Error(data.detail || 'Registration failed');
+      }
       navigate('/login');
     } catch (err) {
+      console.error('Error:', err.message);  // Add logging
       setError(err.message);
     }
   };
