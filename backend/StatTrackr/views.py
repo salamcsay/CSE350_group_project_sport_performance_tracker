@@ -6,12 +6,6 @@ from django.db.models import Q, Sum
 from .models import Club, Player, PlayerStats, ClubStats
 from .serializers import ClubSerializer, PlayerSerializer, PlayerStatsSerializer, ClubStatsSerializer
 from .filters import PlayerFilter, ClubFilter  
-from django.http import JsonResponse
-from django.views.decorators.csrf import ensure_csrf_cookie
-
-@ensure_csrf_cookie
-def get_csrf_token(request):
-    return JsonResponse({'csrfToken': request.META.get('CSRF_COOKIE')})
 
 @api_view(['GET'])
 def player_stats(request, pk):

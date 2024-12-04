@@ -2,7 +2,7 @@
 
 Sports Performance Tracker Project
 
-Team Members: Julian Valleroy, Kiefer Court, Abdou Ceesay
+Team Members: Julian Valleroy, Kiefer Court, Saeed Albakri, Abdou Ceesay, Nina Pauig, 1234
 
 A web application that allows users to track, analyze, and compare player and team performance in different sports. The application provides comprehensive analytics, visualizations, and allows users to follow teams and players for updates.
 
@@ -112,6 +112,7 @@ To get a local copy up and running, follow these simple steps.
 ## Run Application (Frontend):
 - cd frontend
 - npm run dev
+- npm install recharts
 
 ## Access:
 - Backend: http://localhost:8000/api/
