@@ -1,4 +1,4 @@
-// src/components/AppLayout.jsx
+// frontend/src/components/AppLayout.jsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
@@ -27,6 +27,9 @@ const AppLayout = ({ children }) => {
             <Link to="/compare" className="block hover:bg-accent p-2 rounded-lg">
               Compare Players
             </Link>
+            <Link to="/compare-clubs" className="block hover:bg-accent p-2 rounded-lg">
+              Compare Clubs
+            </Link>
           </nav>
         </div>
       </aside>
@@ -47,6 +50,9 @@ const AppLayout = ({ children }) => {
               </TabsTrigger>
               <TabsTrigger value="/compare" asChild>
                 <Link to="/compare">Compare Players</Link>
+              </TabsTrigger>
+              <TabsTrigger value="/compare-clubs" asChild>
+                <Link to="/compare-clubs">Compare Clubs</Link>
               </TabsTrigger>
             </TabsList>
           </Tabs>

@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { AuthProvider } from './context/AuthContext';
 import PlayerComparisonView from './views/PlayerComparisonView';
+import ClubComparisonView from './views/ClubComparisonView'; // Import the new view
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/compare" element={<PlayerComparisonView />} />
+        <Route path="/compare-clubs" element={<ClubComparisonView />} />
       </Routes>
     </AppLayout>
 </AuthProvider>
