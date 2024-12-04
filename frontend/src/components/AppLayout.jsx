@@ -24,6 +24,9 @@ const AppLayout = ({ children }) => {
             <Link to="/clubs" className="block hover:bg-accent p-2 rounded-lg">
               Clubs
             </Link>
+            <Link to="/compare" className="block hover:bg-accent p-2 rounded-lg">
+              Compare Players
+            </Link>
           </nav>
         </div>
       </aside>
@@ -41,6 +44,9 @@ const AppLayout = ({ children }) => {
               </TabsTrigger>
               <TabsTrigger value="/clubs" asChild>
                 <Link to="/clubs">Clubs</Link>
+              </TabsTrigger>
+              <TabsTrigger value="/compare" asChild>
+                <Link to="/compare">Compare Players</Link>
               </TabsTrigger>
             </TabsList>
           </Tabs>

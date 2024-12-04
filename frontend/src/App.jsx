@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import { AuthProvider } from './context/AuthContext';
+import PlayerComparisonView from './views/PlayerComparisonView';
 
 const App = () => {
   return (
@@ -15,10 +16,12 @@ const App = () => {
     <AppLayout>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
+        <Route path="/" element={<DashboardPage />} />
         <Route path="/players" element={<PlayersView />} />
         <Route path="/clubs" element={<ClubsView />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/compare" element={<PlayerComparisonView />} />
       </Routes>
     </AppLayout>
 </AuthProvider>
