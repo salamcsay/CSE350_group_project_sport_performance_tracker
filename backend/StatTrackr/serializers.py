@@ -27,9 +27,10 @@ class ClubSerializer(serializers.ModelSerializer):
     def get_goals_per_game(self, obj):
         return obj.get_goals_per_game()    
 
+
 class PlayerSerializer(serializers.ModelSerializer):
-    club = ClubSerializer(read_only=True)
     stats = PlayerStatsSerializer(read_only=True)
+    club = ClubSerializer(read_only=True)
     goal_contributions = serializers.SerializerMethodField()
     shots_accuracy = serializers.SerializerMethodField()
 

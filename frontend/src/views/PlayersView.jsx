@@ -1,4 +1,3 @@
-// src/views/PlayersView.jsx
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
@@ -19,16 +18,15 @@ const PlayersView = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-
-    useEffect(() => {
-      const fetchPlayers = async () => {
+  useEffect(() => {
+    const fetchPlayers = async () => {
       try {
         const params = new URLSearchParams({
           search: search || '',
           ...(position !== 'all' && { position }),
           ordering: `${sortDirection === 'desc' ? '-' : ''}${sortColumn}`
         });
-
+        
         const response = await api.get(`/players/?${params}`);
         console.log('Players response:', response.data.results);
         setPlayers(response.data.results);
@@ -44,19 +42,12 @@ const PlayersView = () => {
 
   const handleSort = (column) => {
     const sortBy = column === 'club' ? 'club__name' : column;
-    if (sortColumn === column) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortColumn(column);
-      setSortDirection('asc');
-    }
+    setSortDirection(sortColumn === sortBy && sortDirection === 'asc' ? 'desc' : 'asc');
+    setSortColumn(sortBy);
   };
 
-  const renderSortArrow = (column) => {
-    if (sortColumn === column) {
-      return sortDirection === 'asc' ? '↑' : '↓';
-    }
-    return null;
+  const handlePlayerClick = (player) => {
+    setSelectedPlayer(player);
   };
 
   if (loading) {
@@ -76,7 +67,7 @@ const PlayersView = () => {
   }
 
   return (
-    <div className="space-y-6"> 
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Players</CardTitle>
@@ -108,31 +99,33 @@ const PlayersView = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead className="cursor-pointer" onClick={() => handleSort('name')}>
-                    Name 
+                    Name
                   </TableHead>
                   <TableHead className="cursor-pointer" onClick={() => handleSort('club')}>
-                    Club 
+                    Club
                   </TableHead>
                   <TableHead>Position</TableHead>
                   <TableHead className="cursor-pointer" onClick={() => handleSort('stats__goals')}>
-                    Goals {renderSortArrow('stats__goals')}
+                    Goals
                   </TableHead>
                   <TableHead className="cursor-pointer" onClick={() => handleSort('stats__assists')}>
-                    Assists {renderSortArrow('stats__assists')}
+                    Assists
                   </TableHead>
                   <TableHead className="cursor-pointer" onClick={() => handleSort('stats__appearances')}>
-                    Appearances {renderSortArrow('stats__appearances')}
+                    Appearances
                   </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {players.map((player) => (
-                  <TableRow key={player.id}
-                      className="cursor-pointer hover:bg-gray-50"
-                      onClick={() => setSelectedPlayer(player)}>
+                  <TableRow 
+                    key={player.id}
+                    className="cursor-pointer hover:bg-gray-100"
+                    onClick={() => handlePlayerClick(player)}
+                  >
                     <TableCell>{player.name}</TableCell>
-                    <TableCell>{player.club?.name || "N/A"}</TableCell>
-                    <TableCell>{player.position || "N/A"}</TableCell>
+                    <TableCell>{player.club?.name || 'N/A'}</TableCell>
+                    <TableCell>{player.position || 'N/A'}</TableCell>
                     <TableCell>{player.stats?.goals || 0}</TableCell>
                     <TableCell>{player.stats?.assists || 0}</TableCell>
                     <TableCell>{player.stats?.appearances || 0}</TableCell>
@@ -144,9 +137,7 @@ const PlayersView = () => {
         </CardContent>
       </Card>
 
-      {selectedPlayer && (
-        <PlayerDetailView player={selectedPlayer} />
-      )}
+      {selectedPlayer && <PlayerDetailView player={selectedPlayer} />}
     </div>
   );
 };
