@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
-const COLORS = ['#22c55e', '#3b82f6', '#eab308', '#ef4444']; // green, blue, yellow, red
+const COLORS = ['#22c55e', '#f97316', '#3b82f6', '#eab308', '#ef4444',]; // green, blue, yellow, red, orange
 
 const PlayerDetailView = ({ player }) => {
   if (!player) return null;

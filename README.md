@@ -1,8 +1,6 @@
-# Group-18_CSE350-50_group_project_sport_performance_tracker
-
 Sports Performance Tracker Project
 
-Team Members: Julian Valleroy, Kiefer Court, Saeed Albakri, Abdou Ceesay, Nina Pauig, 1234
+Team Members: Julian Valleroy, Kiefer Court, Abdou Ceesay
 
 A web application that allows users to track, analyze, and compare player and team performance in different sports. The application provides comprehensive analytics, visualizations, and allows users to follow teams and players for updates.
 
@@ -17,7 +15,7 @@ A web application that allows users to track, analyze, and compare player and te
 - [Contributing](#contributing)
 - [License](#license)
 
-- ## Features
+## Features
 
 1. **Team and Player Profiles**
    - Create and manage team and player profiles.
@@ -45,18 +43,24 @@ A web application that allows users to track, analyze, and compare player and te
 ## Technologies
 
 ### Frontend
-- **React.js** or **Vue.js**: For building the user interface.
+- **React.js**: For building the user interface.
 - **Chart.js** or **D3.js**: For data visualizations.
-  
+- **Tailwind CSS**: For styling.
+- **Radix UI**: For accessible UI components.
+
 ### Backend
-- **Python** with **Django** (or **Flask** as an alternative): For handling server-side logic, APIs, and database interactions.
-  
+- **Python** with **Django**: For handling server-side logic, APIs, and database interactions.
+- **Django REST framework**: For building APIs.
+- **django-cors-headers**: For handling CORS.
+- **django-filter**: For filtering querysets.
+
 ### Database
-- **PostgreSQL** or **MySQL**: For relational data storage.
-- **MongoDB** (optional): For NoSQL data storage.
+- **SQLite**: For relational data storage (development).
+- **PostgreSQL** or **MySQL**: For relational data storage (production).
 
 ### Authentication
-- **Django Authentication** or **Flask-JWT**: For user login, registration, and session management.
+- **Django Authentication**: For user login, registration, and session management.
+- **dj-rest-auth**: For RESTful authentication.
 
 ### Notifications
 - **SendGrid** or **smtplib**: For email notifications.
@@ -79,40 +83,61 @@ To get a local copy up and running, follow these simple steps.
    git clone https://github.com/yourusername/CSE350_group_project_sport_performance_tracker.git
 
    cd CSE350_group_project_sport_performance_tracker
+   ```
 
-# Environment Setup
+### Environment Setup
 
-## Create & activate virtual environment
-- python3 -m venv venv
-- source venv/bin/activate
+#### Create & activate virtual environment
+- For Unix-based systems:
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
 
-## For Windows
-- python -m venv venv
-- cd venv then cd Scripts
-- run ./activate
+- For Windows:
+  ```cmd
+  python -m venv venv
+  cd venv\Scripts
+  activate
+  ```
 
-## Install dependencies
-- cd backend
-- pip install django djangorestframework - django-cors-headers django-filter
+#### Install dependencies
+- Backend:
+  ```bash
+  cd backend
+  pip install django djangorestframework django-cors-headers django-filter
+  ```
 
-## Database Setup
-- python manage.py makemigrations
-- python manage.py migrate
-- python manage.py createsuperuser
+- Frontend:
+  ```bash
+  cd ../frontend
+  npm install
+  ```
 
-## Frontend Setup
-- cd ../frontend
-- npm install
+### Database Setup
+- Backend:
+  ```bash
+  cd backend
+  python manage.py makemigrations
+  python manage.py migrate
+  python manage.py createsuperuser
+  ```
 
-## Run Application (Backend):
-- cd backend
-- source ../venv/bin/activate
-- python manage.py runserver
+### Run Application
 
-## Run Application (Frontend):
-- cd frontend
-- npm run dev
-- npm install recharts
+#### Backend:
+  ```bash
+  cd backend
+  source ../venv/bin/activate
+  python manage.py runserver
+  ```
+
+#### Frontend:
+  ```bash
+  cd frontend
+  npm run dev
+  npm install recharts
+  ```
 
 ## Access:
 - Backend: http://localhost:8000/api/
@@ -138,4 +163,4 @@ To get a local copy up and running, follow these simple steps.
 - python manage.py shell
 
 ## Static files
-- python manage.py collectstatic      
+- python manage.py collectstatic
