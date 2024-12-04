@@ -112,6 +112,7 @@ To get a local copy up and running, follow these simple steps.
 ## Run Application (Frontend):
 - cd frontend
 - npm run dev
+- npm install recharts
 
 ## Access:
 - Backend: http://localhost:8000/api/
