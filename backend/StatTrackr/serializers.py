@@ -12,7 +12,23 @@ class ClubStatsSerializer(serializers.ModelSerializer):
         model = ClubStats
         fields = '__all__'
 
+class ClubSerializer(serializers.ModelSerializer):
+    stats = ClubStatsSerializer(read_only=True)
+    win_percentage = serializers.SerializerMethodField()
+    goals_per_game = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Club
+        fields = ['id', 'name', 'location', 'stats', 'win_percentage', 'goals_per_game']
+
+    def get_win_percentage(self, obj):
+        return obj.get_win_percentage()
+
+    def get_goals_per_game(self, obj):
+        return obj.get_goals_per_game()    
+
 class PlayerSerializer(serializers.ModelSerializer):
+    club = ClubSerializer(read_only=True)
     stats = PlayerStatsSerializer(read_only=True)
     goal_contributions = serializers.SerializerMethodField()
     shots_accuracy = serializers.SerializerMethodField()
@@ -28,17 +44,3 @@ class PlayerSerializer(serializers.ModelSerializer):
     def get_shots_accuracy(self, obj):
         return obj.get_shots_accuracy()    
 
-class ClubSerializer(serializers.ModelSerializer):
-    stats = ClubStatsSerializer(read_only=True)
-    win_percentage = serializers.SerializerMethodField()
-    goals_per_game = serializers.SerializerMethodField()
-    
-    class Meta:
-        model = Club
-        fields = ['id', 'name', 'location', 'stats', 'win_percentage', 'goals_per_game']
-
-    def get_win_percentage(self, obj):
-        return obj.get_win_percentage()
-
-    def get_goals_per_game(self, obj):
-        return obj.get_goals_per_game()    
