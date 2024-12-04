@@ -84,7 +84,8 @@ To get a local copy up and running, follow these simple steps.
 
 ## Create & activate virtual environment
 - python3 -m venv venv
-- source venv/bin/activate
+- Linux: source venv/bin/activate 
+- Windows: source venv/Scripts/activate
 
 ## For Windows
 - python -m venv venv
