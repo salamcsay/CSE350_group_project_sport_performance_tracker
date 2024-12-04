@@ -54,7 +54,7 @@ if not exist "%FRONTEND_DIR%" (
 :: Start backend server
 echo_status Starting Django backend server...
 cd "%BACKEND_DIR%"
-start cmd /k "python manage.py runserver"
+start cmd /k "%PYTHON_CMD% manage.py runserver"
 set DJANGO_PID=%!
 
 :: Start frontend server
